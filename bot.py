@@ -29,13 +29,13 @@ async def quotes(ctx):
     json_data = json.loads(response.text)
     quote = json_data[0]['q'] + " -" + json_data[0]['a']
     await ctx.send(f'<@{author}>\n{quote}')
-    base = Image.open('temp2.jpg')
+    base = Image.open('backgrounds/temp2.jpg')
     basee = base.convert('RGB')
     para = textwrap.wrap(quote, width=80)
     W, H = (1280,417)
     draw = ImageDraw.Draw(basee)
     w, h = draw.textsize(quote)
-    font = ImageFont.truetype("Quote.ttf", 40)
+    font = ImageFont.truetype("backgrounds/Quote.ttf", 40)
     current_h, pad = 210,30
     for line in para:
         x, y = draw.textsize(line, font=font)
@@ -55,12 +55,12 @@ async def quotes1(ctx):
     json_data = json.loads(response.text)
     quote = json_data[0]['q'] + " -" + json_data[0]['a']
     await ctx.send(f'<@{author}>\n{quote}')
-    base = Image.open('template.jpg')
+    base = Image.open('backgrounds/template.jpg')
     para = textwrap.wrap(quote, width=90)
     W, H = (1280,417)
     draw = ImageDraw.Draw(base)
     w, h = draw.textsize(quote)
-    font = ImageFont.truetype("Quote.ttf", 36)
+    font = ImageFont.truetype("backgrounds/Quote.ttf", 36)
     current_h, pad = 335,25
     for line in para:
         x, y = draw.textsize(line, font=font)
@@ -73,8 +73,9 @@ async def quotes1(ctx):
     remove(f'final.jpg')
 
 
-@bot.command()
-async def whomadeu(ctx):
-    await ctx.send(f'<@254700247471751171>')
+@bot.group()
+async def owner(ctx):
+        yopi = discord.Embed(title = 'Owned by YOPI', description = f'Check out my [twitter](https://twitter.com/YONINUX) and [github](https://github.com/YOPll) ',color = discord.Colour.teal())
+        await ctx.send(embed = yopi)
 
 bot.run(creds.token)
